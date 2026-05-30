@@ -195,19 +195,19 @@
   @media (max-width:860px){ .about-grid{grid-template-columns:1fr} }
   .about-card{padding:32px}
   .about-card p{margin:0;color:#cbd5e1;font-size:16px;line-height:1.75}
-  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .stat-grid{display:grid;grid-template-columns:1fr;gap:14px}
   .stat{
-    padding:22px;border-radius:14px;
+    padding:22px 24px;border-radius:14px;
     background:var(--surface);border:1px solid var(--border);
     text-align:left;
   }
   .stat .num{
-    font-family:var(--font-display);font-size:32px;font-weight:800;
+    font-family:var(--font-display);font-size:22px;font-weight:800;
     background:linear-gradient(135deg,#fff,#94a3b8);
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    line-height:1;margin-bottom:6px;
+    line-height:1.2;margin-bottom:8px;letter-spacing:-.3px;
   }
-  .stat .lbl{color:var(--muted);font-size:13px}
+  .stat .lbl{color:#cbd5e1;font-size:14px;line-height:1.6;margin:0}
 
   /* Experience timeline */
   .timeline{position:relative;margin-top:8px}
@@ -391,10 +391,14 @@
           </p>
         </div>
         <div class="stat-grid reveal">
-          <div class="stat"><div class="num">10+</div><div class="lbl">Years in front-end</div></div>
-          <div class="stat"><div class="num">100+</div><div class="lbl">Landing pages shipped</div></div>
-          <div class="stat"><div class="num">16</div><div class="lbl">Languages & RTL support</div></div>
-          <div class="stat"><div class="num">6</div><div class="lbl">Companies & teams</div></div>
+          <div class="stat">
+            <div class="num">10+ years in front-end</div>
+            <p class="lbl">Worked across B2C and B2B products, agency client work, and independent freelance projects. Domains include e-commerce on Salesforce Commerce Cloud, gambling, and marketing landing pages. Have worked in small product teams, large agency teams, and solo — as a developer, senior developer, and team lead.</p>
+          </div>
+          <div class="stat">
+            <div class="num">Broad hands-on experience</div>
+            <p class="lbl">Built layouts in Arabic, Hebrew, Japanese and Chinese, including full RTL support and locale-specific typography. Comfortable with CSS and JavaScript animations, complex interactive UI components, and cross-browser compatibility — including older browser versions that real users still run.</p>
+          </div>
         </div>
       </div>
     </div>
