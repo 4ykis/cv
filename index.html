@@ -139,17 +139,24 @@
     font-size:14px;font-weight:600;text-decoration:none;
     border:1px solid var(--border);
     color:var(--text);background:var(--surface);
-    transition:transform .15s ease, background .2s, border-color .2s, box-shadow .2s;
+    transition:background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
     cursor:pointer;
   }
-  .btn:hover{background:var(--surface-hi);border-color:var(--border-hi);transform:translateY(-1px)}
+  .btn:hover{
+    background:var(--surface-hi);
+    border-color:var(--border-hi);
+    box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
   .btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
   .btn.primary{
     background:linear-gradient(135deg,var(--purple),var(--blue));
     border-color:transparent;
     box-shadow:0 10px 30px -10px rgba(139,92,246,.6), inset 0 1px 0 rgba(255,255,255,.18);
   }
-  .btn.primary:hover{box-shadow:0 16px 40px -10px rgba(139,92,246,.7)}
+  .btn.primary:hover{
+    background:linear-gradient(135deg, #9d6efb, #5193ff);
+    box-shadow:0 14px 36px -10px rgba(139,92,246,.75), inset 0 1px 0 rgba(255,255,255,.22);
+  }
   .btn svg{width:16px;height:16px}
 
   .trust{
