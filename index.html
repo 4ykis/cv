@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Roman Yasinskiy — Senior Front-End Developer</title>
+<meta name="description" content="Roman Yasinskiy — Senior Front-End Developer with 10+ years of experience in pixel-perfect HTML/CSS, Angular, Vue/Nuxt, and Salesforce Commerce Cloud." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#07111F;
+    --bg-2:#0B1020;
+    --surface:rgba(255,255,255,0.06);
+    --surface-hi:rgba(255,255,255,0.09);
+    --border:rgba(255,255,255,0.12);
+    --border-hi:rgba(255,255,255,0.22);
+    --text:#F5F7FA;
+    --muted:#AAB4C3;
+    --purple:#8B5CF6;
+    --blue:#3B82F6;
+    --cyan:#38BDF8;
+    --tag:rgba(148,163,184,0.16);
+    --tag-border:rgba(148,163,184,0.22);
+    --radius:16px;
+    --radius-sm:10px;
+    --maxw:1120px;
+    --font:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --font-display:'Manrope','Inter',system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font);
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    font-size:16px;
+  }
+
+  /* Background layers */
+  .bg-grid{
+    position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(1100px 600px at 50% -10%, rgba(139,92,246,0.35), transparent 60%),
+      radial-gradient(900px 500px at 80% 10%, rgba(59,130,246,0.25), transparent 60%),
+      radial-gradient(700px 500px at 10% 20%, rgba(56,189,248,0.18), transparent 60%),
+      linear-gradient(180deg,#070D19 0%, #07111F 40%, #0B1020 100%);
+  }
+  .bg-grid::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
+  .bg-grid::after{
+    content:"";position:absolute;inset:0;opacity:.5;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;
+  }
+
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(12px);
+    -webkit-backdrop-filter:saturate(140%) blur(12px);
+    background:linear-gradient(180deg, rgba(7,17,31,0.7), rgba(7,17,31,0.35));
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{
+    font-family:var(--font-display);font-weight:800;letter-spacing:.2px;
+    font-size:15px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .brand .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple),var(--cyan));
+    box-shadow:0 0 18px rgba(139,92,246,.7);
+  }
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+    padding:8px 12px;border-radius:8px;transition:.2s color,.2s background;
+  }
+  .nav-links a:hover{color:var(--text);background:var(--surface)}
+  @media (max-width:720px){ .nav-links{display:none} }
+
+  /* Hero */
+  .hero{padding:96px 0 80px;text-align:center;position:relative}
+  .hero .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:999px;
+    background:var(--surface);border:1px solid var(--border);
+    color:var(--muted);font-size:13px;font-weight:500;
+    margin-bottom:24px;
+  }
+  .hero .eyebrow .live{
+    width:8px;height:8px;border-radius:50%;background:#22c55e;
+    box-shadow:0 0 0 4px rgba(34,197,94,.18);
+  }
+  h1.name{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(40px,7vw,76px);
+    line-height:1.05;
+    margin:0 0 14px;
+    letter-spacing:-1.2px;
+    background:linear-gradient(180deg,#fff 0%, #cbd5ff 70%, #94a3b8 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .role{
+    font-size:clamp(16px,2vw,20px);
+    color:var(--muted);
+    margin:0 0 22px;
+    font-weight:500;letter-spacing:.4px;
+  }
+  .role b{
+    background:linear-gradient(90deg,var(--purple),var(--blue),var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:700;
+  }
+  .pitch{
+    max-width:680px;margin:0 auto 36px;color:#cbd5e1;font-size:17px;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:42px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 18px;border-radius:12px;
+    font-size:14px;font-weight:600;text-decoration:none;
+    border:1px solid var(--border);
+    color:var(--text);background:var(--surface);
+    transition:transform .15s ease, background .2s, border-color .2s, box-shadow .2s;
+    cursor:pointer;
+  }
+  .btn:hover{background:var(--surface-hi);border-color:var(--border-hi);transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  .btn.primary{
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    border-color:transparent;
+    box-shadow:0 10px 30px -10px rgba(139,92,246,.6), inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .btn.primary:hover{box-shadow:0 16px 40px -10px rgba(139,92,246,.7)}
+  .btn svg{width:16px;height:16px}
+
+  .trust{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;max-width:880px;margin:0 auto;
+  }
+  .trust .chip{
+    padding:14px 16px;border-radius:14px;
+    background:var(--surface);border:1px solid var(--border);
+    font-size:13px;color:#cbd5e1;font-weight:500;
+    backdrop-filter:blur(8px);
+  }
+  .trust .chip b{display:block;color:var(--text);font-size:14px;margin-bottom:2px;font-weight:700}
+  @media (max-width:720px){ .trust{grid-template-columns:repeat(2,1fr)} }
+
+  /* Sections */
+  section{padding:88px 0;position:relative}
+  .section-head{margin-bottom:40px;max-width:720px}
+  .section-tag{
+    display:inline-block;font-size:12px;font-weight:700;
+    color:var(--cyan);letter-spacing:2px;text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-family:var(--font-display);font-size:clamp(28px,4vw,40px);
+    margin:0 0 12px;font-weight:800;letter-spacing:-.6px;line-height:1.15;
+  }
+  .section-sub{color:var(--muted);font-size:16px;margin:0}
+
+  /* Cards */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    transition:transform .2s ease, border-color .2s, background .2s;
+  }
+  .card:hover{border-color:var(--border-hi);background:var(--surface-hi)}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr} }
+  .about-card{padding:32px}
+  .about-card p{margin:0;color:#cbd5e1;font-size:16px;line-height:1.75}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .stat{
+    padding:22px;border-radius:14px;
+    background:var(--surface);border:1px solid var(--border);
+    text-align:left;
+  }
+  .stat .num{
+    font-family:var(--font-display);font-size:32px;font-weight:800;
+    background:linear-gradient(135deg,#fff,#94a3b8);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    line-height:1;margin-bottom:6px;
+  }
+  .stat .lbl{color:var(--muted);font-size:13px}
+
+  /* Experience timeline */
+  .timeline{position:relative;margin-top:8px}
+  .timeline::before{
+    content:"";position:absolute;left:14px;top:8px;bottom:8px;width:2px;
+    background:linear-gradient(180deg, rgba(139,92,246,.6), rgba(56,189,248,.2), transparent);
+    border-radius:2px;
+  }
+  .tl-item{position:relative;padding-left:48px;margin-bottom:24px}
+  .tl-item:last-child{margin-bottom:0}
+  .tl-dot{
+    position:absolute;left:6px;top:24px;width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle, var(--cyan), var(--blue));
+    box-shadow:0 0 0 4px rgba(56,189,248,.12), 0 0 24px rgba(59,130,246,.6);
+  }
+  .exp-card{padding:22px 24px}
+  .exp-head{
+    display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between;
+    margin-bottom:6px;
+  }
+  .exp-role{font-family:var(--font-display);font-weight:700;font-size:18px;margin:0;color:#fff}
+  .exp-role .at{color:var(--muted);font-weight:500}
+  .exp-date{color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap}
+  .exp-tech{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+  .tech-pill{
+    font-size:12px;padding:4px 10px;border-radius:999px;
+    background:var(--tag);border:1px solid var(--tag-border);
+    color:#cbd5e1;font-weight:500;
+  }
+  .exp-list{margin:0;padding-left:18px;color:#cbd5e1}
+  .exp-list li{margin-bottom:6px;font-size:14.5px}
+  .exp-list li::marker{color:var(--purple)}
+
+  @media (max-width:560px){
+    .tl-item{padding-left:36px}
+    .timeline::before{left:9px}
+    .tl-dot{left:1px;width:16px;height:16px}
+  }
+
+  /* Skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media (max-width:860px){ .skills-grid{grid-template-columns:1fr} }
+  .skill-card{padding:24px}
+  .skill-card h3{
+    font-family:var(--font-display);font-size:14px;font-weight:700;
+    color:var(--cyan);text-transform:uppercase;letter-spacing:2px;
+    margin:0 0 16px;
+  }
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{
+    display:inline-flex;align-items:center;
+    padding:6px 12px;border-radius:999px;
+    background:var(--tag);border:1px solid var(--tag-border);
+    color:#e2e8f0;font-size:13px;font-weight:500;
+    transition:.2s;
+  }
+  .pill:hover{background:rgba(139,92,246,.18);border-color:rgba(139,92,246,.4);color:#fff}
+  .pill.strong{
+    background:linear-gradient(135deg, rgba(139,92,246,.18), rgba(59,130,246,.18));
+    border-color:rgba(139,92,246,.35);color:#fff;
+  }
+
+  /* Education */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media (max-width:720px){ .edu-grid{grid-template-columns:1fr} }
+  .edu-card{padding:24px}
+  .edu-card h3{margin:0 0 6px;font-family:var(--font-display);font-size:18px;font-weight:700}
+  .edu-meta{color:var(--muted);font-size:13px;margin:0 0 10px}
+  .edu-course{color:#cbd5e1;font-size:14.5px;margin:0}
+
+  /* Contact / CTA */
+  .cta{
+    position:relative;overflow:hidden;
+    border-radius:24px;
+    padding:60px 40px;
+    text-align:center;
+    background:
+      radial-gradient(600px 300px at 50% 0%, rgba(139,92,246,.35), transparent 70%),
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border:1px solid var(--border);
+  }
+  .cta h2{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(26px,3.6vw,40px);
+    margin:0 0 14px;letter-spacing:-.6px;line-height:1.2;
+  }
+  .cta p{max-width:620px;margin:0 auto 28px;color:#cbd5e1}
+  .cta .cta-row{margin-bottom:0}
+
+  /* Footer */
+  footer{
+    padding:36px 0 56px;border-top:1px solid rgba(255,255,255,0.06);
+    margin-top:80px;color:var(--muted);font-size:13px;
+  }
+  .foot{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+  .foot a{color:var(--muted);text-decoration:none}
+  .foot a:hover{color:var(--text)}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important;animation:none!important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand"><span class="dot"></span> Roman Yasinskiy</div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow"><span class="live"></span> Available for new projects</span>
+      <h1 class="name">Roman Yasinskiy</h1>
+      <p class="role"><b>Senior Front-End Developer</b> · 10+ years building the web</p>
+      <p class="pitch">
+        Front-end developer with 10+ years of experience building responsive,
+        pixel-perfect web interfaces, scalable e-commerce solutions, and complex
+        design-to-code implementations.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:4yk.roman@gmail.com" aria-label="Email Roman">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email me
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/roman-yasinskiy" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-3.99V9Z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://github.com/4ykis" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.44-2.7 5.41-5.26 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+      </div>
+
+      <div class="trust" role="list">
+        <div class="chip" role="listitem"><b>10+ years</b>Experience</div>
+        <div class="chip" role="listitem"><b>Team Lead</b>Front-end leadership</div>
+        <div class="chip" role="listitem"><b>E-commerce</b>Salesforce Commerce Cloud</div>
+        <div class="chip" role="listitem"><b>Pixel-perfect</b>HTML / CSS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">About</span>
+        <h2 class="section-title">A senior front-end engineer focused on craft and delivery.</h2>
+        <p class="section-sub">Leading teams, translating designs, shipping responsive interfaces that scale.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card about-card reveal">
+          <p>
+            Senior Front-End Developer experienced in leading front-end teams,
+            creating pixel-perfect responsive layouts, converting complex designs
+            into production-ready interfaces, and building scalable e-commerce
+            solutions. Strong background in HTML, CSS/SCSS, JavaScript, TypeScript,
+            Angular, Vue/Nuxt, and Salesforce Commerce Cloud. Comfortable working
+            with designers, analyzing Figma/PSD specifications, optimizing
+            front-end performance, and supporting best practices across teams.
+          </p>
+        </div>
+        <div class="stat-grid reveal">
+          <div class="stat"><div class="num">10+</div><div class="lbl">Years in front-end</div></div>
+          <div class="stat"><div class="num">100+</div><div class="lbl">Landing pages shipped</div></div>
+          <div class="stat"><div class="num">16</div><div class="lbl">Languages & RTL support</div></div>
+          <div class="stat"><div class="num">6</div><div class="lbl">Companies & teams</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Experience</span>
+        <h2 class="section-title">A decade of building production interfaces.</h2>
+        <p class="section-sub">From Junior to Team Lead — across e-commerce, product, and agency work.</p>
+      </div>
+
+      <div class="timeline">
+
+        <article class="tl-item reveal">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="card exp-card">
+            <div class="exp-head">
+              <h3 class="exp-role">Team Lead Front-End Developer <span class="at">· InsulaLabs</span></h3>
+              <span class="exp-date">Aug 2023 — Present</span>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">Angular</span><span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS</span><span class="tech-pill">Figma</span>
+            </div>
+            <ul class="exp-list">
+              <li>Led a front-end team delivering high-quality web interfaces.</li>
+              <li>Focused on pixel-perfect HTML/CSS implementation of complex, highly customized designs.</li>
+              <li>Provided technical guidance and supported team collaboration.</li>
+              <li>Ensured responsive design, cross-browser compatibility, and performance optimization.</li>
+              <li>Analyzed design specifications to find efficient, scalable front-end solutions.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="card exp-card">
+            <div class="exp-head">
+              <h3 class="exp-role">Front-End Developer <span class="at">· Freelance</span></h3>
+              <span class="exp-date">Apr 2023 — Sep 2023</span>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span>
+              <span class="tech-pill">RTL</span><span class="tech-pill">Photoshop</span>
+              <span class="tech-pill">Figma</span>
+            </div>
+            <ul class="exp-list">
+              <li>Converted PSD designs into responsive HTML/CSS layouts.</li>
+              <li>Worked with right-to-left languages, including Arabic and Hebrew.</li>
+              <li>Managed timelines, client communication, and quality assurance independently.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="card exp-card">
+            <div class="exp-head">
+              <h3 class="exp-role">Middle / Senior Front-End Developer <span class="at">· Astound Commerce</span></h3>
+              <span class="exp-date">Oct 2017 — Apr 2023</span>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">Salesforce Commerce Cloud</span>
+              <span class="tech-pill">JavaScript ES5/ES6</span>
+              <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span>
+              <span class="tech-pill">Photoshop</span>
+            </div>
+            <ul class="exp-list">
+              <li>Developed and maintained scalable e-commerce solutions on Salesforce Commerce Cloud.</li>
+              <li>Ensured high performance and reliability across multiple client projects.</li>
+              <li>Participated in agile development cycles.</li>
+              <li>Contributed to code reviews and improved front-end workflows and best practices.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="card exp-card">
+            <div class="exp-head">
+              <h3 class="exp-role">Middle Front-End Developer <span class="at">· Zeo Alliance</span></h3>
+              <span class="exp-date">Jun 2017 — Dec 2017</span>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">jQuery</span><span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS</span><span class="tech-pill">Zeplin</span>
+            </div>
+            <ul class="exp-list">
+              <li>Supported and maintained MacKeeper websites.</li>
+              <li>Managed 100+ marketing landing pages across 16 languages.</li>
+              <li>Worked with Japanese, Chinese, Arabic, and English pages.</li>
+              <li>Developed promotional features for campaigns such as Black Friday.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="card exp-card">
+            <div class="exp-head">
+              <h3 class="exp-role">Middle Front-End Developer <span class="at">· OTAKOYI</span></h3>
+              <span class="exp-date">Dec 2016 — Sep 2017</span>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">JavaScript ES5/ES6</span>
+              <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span>
+              <span class="tech-pill">Photoshop</span>
+            </div>
+            <ul class="exp-list">
+              <li>Designed and built a custom JavaScript table library.</li>
+              <li>Implemented pagination and sorting features from JSON data.</li>
+              <li>Created project-specific front-end solutions.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="card exp-card">
+            <div class="exp-head">
+              <h3 class="exp-role">Junior Front-End Developer <span class="at">· Universal Web</span></h3>
+              <span class="exp-date">Apr 2015 — Apr 2017</span>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">ModX</span><span class="tech-pill">WordPress</span>
+              <span class="tech-pill">JavaScript ES5/ES6</span>
+              <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span>
+              <span class="tech-pill">Photoshop</span>
+            </div>
+            <ul class="exp-list">
+              <li>Delivered full-stack website development using ModX CMS and WordPress.</li>
+              <li>Converted PSD designs into complete production-ready websites.</li>
+              <li>Handled deployment to hosting environments.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Skills</span>
+        <h2 class="section-title">Tooling, frameworks, and craft.</h2>
+        <p class="section-sub">Daily-driver tech and the strengths I bring to a team.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="card skill-card reveal">
+          <h3>Languages</h3>
+          <div class="pills">
+            <span class="pill">HTML</span><span class="pill">CSS / SCSS</span>
+            <span class="pill">JavaScript</span><span class="pill">TypeScript</span>
+            <span class="pill">PHP</span><span class="pill">Python</span>
+          </div>
+        </div>
+
+        <div class="card skill-card reveal">
+          <h3>Frontend Technologies</h3>
+          <div class="pills">
+            <span class="pill">Angular</span><span class="pill">Vue</span>
+            <span class="pill">Nuxt.js</span><span class="pill">Redux</span>
+            <span class="pill">Webpack</span><span class="pill">Tailwind CSS</span>
+            <span class="pill">Material UI</span><span class="pill">Bootstrap</span>
+            <span class="pill">HTML5</span><span class="pill">HTML Video</span>
+            <span class="pill">CSS Animation</span><span class="pill">NoJS Components</span>
+          </div>
+        </div>
+
+        <div class="card skill-card reveal">
+          <h3>Tools</h3>
+          <div class="pills">
+            <span class="pill">VS Code</span><span class="pill">Git</span>
+            <span class="pill">Sourcetree</span><span class="pill">WebStorm</span>
+            <span class="pill">Figma</span><span class="pill">Photoshop</span>
+            <span class="pill">Zeplin</span>
+          </div>
+        </div>
+
+        <div class="card skill-card reveal">
+          <h3>Special Strengths</h3>
+          <div class="pills">
+            <span class="pill strong">Pixel-perfect layout</span>
+            <span class="pill strong">Responsive design</span>
+            <span class="pill strong">Cross-browser compatibility</span>
+            <span class="pill strong">RTL layout</span>
+            <span class="pill strong">E-commerce front-end</span>
+            <span class="pill strong">Salesforce Commerce Cloud</span>
+            <span class="pill strong">Design-to-code implementation</span>
+            <span class="pill strong">Team leadership</span>
+            <span class="pill strong">Performance optimization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Education</span>
+        <h2 class="section-title">Academic background.</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="card edu-card reveal">
+          <h3>Computer Academy STEP, Lviv</h3>
+          <p class="edu-meta">Aug 2014 — Jul 2015</p>
+          <p class="edu-course">Web Developer — HTML, CSS, JavaScript</p>
+        </div>
+        <div class="card edu-card reveal">
+          <h3>Ivan Franko National University of Lviv</h3>
+          <p class="edu-meta">Sep 2012 — May 2014</p>
+          <p class="edu-course">Mathematics &amp; Mechanics</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="cta reveal">
+        <h2>Let’s build clean, scalable front-end experiences.</h2>
+        <p>
+          Available for front-end development, team leadership, design-to-code
+          implementation, e-commerce interfaces, and complex responsive layouts.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:4yk.roman@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Contact by email
+          </a>
+          <a class="btn" href="https://github.com/4ykis" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.44-2.7 5.41-5.26 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.66.79.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            View GitHub
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/roman-yasinskiy" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-3.99V9Z"/></svg>
+            Open LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>© <span id="yr"></span> Roman Yasinskiy — Senior Front-End Developer</div>
+    <div>
+      <a href="mailto:4yk.roman@gmail.com">4yk.roman@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+380937071559">+38 (093) 70 71 559</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+380977153856">+38 (097) 71 53 856</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
